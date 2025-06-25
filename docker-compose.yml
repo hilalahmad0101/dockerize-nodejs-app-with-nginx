@@ -1,0 +1,21 @@
+services:
+  app:
+    build: .
+    environment:
+      - APP_NAME=App1
+    ports:
+      - "3001:3001"
+
+  app1:
+    build: .
+    environment:
+      - APP_NAME=App2
+    ports:
+      - "3002:3001"
+
+  app2:
+    build: .
+    environment:
+      - APP_NAME=app3
+    ports:
+      - "3003:3001"
