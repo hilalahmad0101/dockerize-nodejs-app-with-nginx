@@ -1,17 +1,17 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const PORT = 3001;
 
-// Serve static files from the "public" directory
+const env_app_name=process.env.APP_NAME;
+const app_name = "My Awesome App " + env_app_name; // your dynamic variable
 
-// Route to serve index.html
-const app_name = process.env.APP_NAME;
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views')); // where your .ejs files will live
+
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-    console.log(`the servername is ${app_name}`)
+    res.render('index', { app_name }); // pass the variable to the template
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running at ${app_name} http://localhost:${PORT}`);
+app.listen(3001, () => {
+    console.log('Server running on port 3000');
 });
